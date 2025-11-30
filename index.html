@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atul_Portfolio</title>
+    <!-- Fixed Script Links -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#1a0b2e', // Deep purple background
+                        card: '#2d1b4e', // Lighter purple for cards
+                        primary: '#d946ef', // Fuchsia/Pink for accents
+                        secondary: '#8b5cf6', // Violet
+                        tertiary: '#4c1d95', // Darker violet
+                        glass: 'rgba(45, 27, 78, 0.4)',
+                        glassBorder: 'rgba(139, 92, 246, 0.2)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-up': 'fadeUp 0.8s ease-out forwards',
+                        'shimmer': 'shimmer 2s linear infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        shimmer: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="antialiased selection:bg-primary/30 selection:text-white">
+
+    <!-- Animated Background Blobs -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-secondary/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-tertiary/30 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
+        <div class="absolute inset-0 bg-grid opacity-20"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#hero" class="text-2xl font-display font-bold text-white tracking-tight hover:text-primary transition-colors">
+                    Atul<span class="text-primary">.dev</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">About</a>
+                    <a href="#skills" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Skills</a>
+                    <a href="#projects" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Projects</a>
+                    <a href="#services" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Services</a>
+                    <a href="#contact" class="px-5 py-2.5 rounded-full bg-secondary/20 hover:bg-secondary/40 text-white text-sm font-medium transition-all border border-secondary/30 backdrop-blur-sm shadow-[0_0_15px_rgba(139,92,246,0.3)]">
+                        Let's Talk
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-300 hover:text-white focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full glass-nav border-t border-white/5 p-4 flex flex-col space-y-4 shadow-xl z-50">
+            <a href="#about" class="block py-2 text-gray-300 hover:text-white hover:pl-2 transition-all">About</a>
+            <a href="#skills" class="block py-2 text-gray-300 hover:text-white hover:pl-2 transition-all">Skills</a>
+            <a href="#projects" class="block py-2 text-gray-300 hover:text-white hover:pl-2 transition-all">Projects</a>
+            <a href="#services" class="block py-2 text-gray-300 hover:text-white hover:pl-2 transition-all">Services</a>
+            <a href="#contact" class="block py-2 text-primary font-medium">Let's Talk</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center justify-center relative pt-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    
+                    <!-- Text Content -->
+                    <div class="space-y-8 animate-fade-up">
+                        <div class="inline-flex items-center px-3 py-1 rounded-full border border-secondary/50 bg-secondary/10 text-secondary text-xs font-medium tracking-wider">
+<!-- adding the top badge-->
+                            <span class="w-2 h-2 rounded-full bg-secondary mr-2 animate-pulse"></span>
+                            STUDENT
+                        </div>
+<!-- Heading title -->
+                        <h1 class="text-5xl lg:text-7xl font-display font-bold text-white leading-[1.1]">
+                            Automating the <br>
+                            <span class="text-gradient">Possibilities</span>
+                        </h1>
+                        
+                        <p class="text-lg text-gray-400 max-w-lg leading-relaxed">
+<!-- adind header paragraph -->
+                            I'm Atul Kushwaha. First-year AI & ML undergrad at <strong>KIET</strong>. I bridge the gap between complex problems and elegant solutions using Python and intelligent automation.
+                        </p>
+
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#projects" class="group relative px-8 py-4 bg-gradient-to-r from-secondary to-primary text-white font-semibold rounded-xl overflow-hidden transition-all hover:shadow-[0_0_40px_-10px_rgba(217,70,239,0.5)]">
+                                <div class="absolute inset-0 w-full h-full bg-white/20 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                                <span class="relative flex items-center gap-2">
+                                    View Projects <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </span>
+                            </a>
+<!-- adding github link -->
+                            <a href="https://github.com/atulkushwaha0112-py" target="_blank" class="px-8 py-4 rounded-xl glass-panel text-white font-medium hover:bg-white/5 transition-all flex items-center gap-2">
+                                <i data-lucide="github" class="w-4 h-4"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+
+
+     <!-- ---------------------------------------------------------------------------------------------- -->
+<!-- editing the terminal design -->
+
+                    <!-- Hero Visual -->
+                    <div class="relative flex justify-center lg:justify-end animate-float">
+                        <div class="relative w-80 h-80 md:w-96 md:h-96">
+                            <!-- Code Card Visual -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-secondary/30 to-primary/30 rounded-3xl blur-2xl transform rotate-6"></div>
+                            <div class="relative h-full bg-[#160b25] border border-white/10 rounded-2xl p-6 shadow-2xl flex flex-col overflow-hidden">
+                                <!-- Header -->
+                                <div class="flex items-center justify-between mb-6 border-b border-white/5 pb-4">
+                                    <div class="flex gap-2">
+                                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                                    </div>
+                                    <span class="text-xs text-gray-500 font-mono">Atul.py</span>
+                                </div>
+                                <!-- Code Snippet -->
+                                <div class="font-mono text-sm space-y-3 text-gray-400 overflow-hidden">
+                                    <div class="flex">
+                                        <span class="text-gray-600 w-8">1</span>
+                                        <p><span class="text-purple-400">import</span> <span class="text-yellow-100">Portfolio</span></p>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="text-gray-600 w-8">2</span>
+                                        <p><span class="text-purple-400">class</span> <span class="text-blue-400">Atul</span>:</p>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="text-gray-600 w-8">3</span>
+                                        <p class="pl-4">role = <span class="text-green-400">"AI-ML Student"</span></p>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="text-gray-600 w-8">4</span>
+                                        <p class="pl-4">college = <span class="text-green-400">"KIET"</span></p>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="text-gray-600 w-8">5</span>
+                                        <p class="pl-4">skills = [<span class="text-green-400">"Python"</span>, <span class="text-green-400">"AI"</span>, <span class="text-green-400">"ML"</span>]</p>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="text-gray-600 w-8">6</span>
+                                        <p class="pl-4"></p>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="text-gray-600 w-8">7</span>
+                                        <p class="pl-4"><span class="text-purple-400">def</span> <span class="text-blue-400">build_future</span>(self):</p>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="text-gray-600 w-8">8</span>
+                                        <p class="pl-8"><span class="text-purple-400">while</span> <span class="text-yellow-400">True</span>:</p>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="text-gray-600 w-8">9</span>
+                                        <p class="pl-12">self.learn()</p>
+                                    </div>
+                                
+                                    <div class="flex">
+                                        <span class="text-gray-600 w-8">10</span>
+                                        <p class="pl-12">self.create() <span class="animate-pulse">|</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Floating Badge -->
+                            <div class="absolute -bottom-6 -right-6 glass-panel p-4 rounded-xl flex items-center gap-3 animate-bounce shadow-xl" style="animation-duration: 3s;">
+                                <div class="w-10 h-10 bg-secondary/20 rounded-lg flex items-center justify-center text-secondary">
+                                    <i data-lucide="cpu" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-gray-400">Status</div>
+                                    <div class="font-bold text-white text-sm">Learning Mode</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+  <!-- -------------------------------------------------------------------------------------------------- -->
+
+
+<!-- About Section (Updated UI) -->
+
+
+        <section id="about" class="py-24 relative">
+             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-16 items-start">
+                    
+                    <!-- Left: Text Content -->
+                    <div class="space-y-8 reveal">
+                        <h2 class="text-3xl md:text-4xl font-display font-bold text-white">
+                            Creating technology to solve <span class="text-gradient">real-world problems</span>.
+                        </h2>
+                        
+                        <div class="space-y-6 text-gray-300 leading-relaxed">
+                            <p>
+                                My journey in programming started with <span class="text-primary font-medium">Python</span>, which remains my favorite language for its versatility and power.
+                            </p>
+                            <p>
+                                Currently, I'm expanding my skillset by learning <span class="text-secondary font-medium">C programming</span> while pursuing my degree in AI and Machine Learning. I believe in <span class="text-pink-400 font-medium">learning by doing</span>, which is why I've built several automation projects and various automation tools.
+                            </p>
+                            <p>
+                                When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my work on my personal website.
+                            </p>
+                        </div>
+
+  <!-- -------------------------------------------------------------------------------------------------- -->
+
+
+
+
+
+    
+<!-- Info Grid -->
+                        <div class="grid grid-cols-2 gap-4 mt-8">
+                            <div class="glass-panel p-4 rounded-xl hover:bg-white/5 transition-colors">
+                                <p class="text-gray-400 text-xs mb-1">Based in</p>
+                                <h4 class="text-white font-semibold">Lucknow, India</h4>
+                            </div>
+                            <div class="glass-panel p-4 rounded-xl hover:bg-white/5 transition-colors">
+                                <p class="text-gray-400 text-xs mb-1">Education</p>
+                                <h4 class="text-white font-semibold">B.Tech AI/ML</h4>
+                            </div>
+                            <div class="glass-panel p-4 rounded-xl hover:bg-white/5 transition-colors">
+                                <p class="text-gray-400 text-xs mb-1">Favorite Language</p>
+                                <h4 class="text-white font-semibold flex items-center gap-2">
+                                    Python <i data-lucide="code" class="w-4 h-4 text-green-400"></i>
+                                </h4>
+                            </div>
+                            <div class="glass-panel p-4 rounded-xl hover:bg-white/5 transition-colors">
+                                <p class="text-gray-400 text-xs mb-1">Currently Learning</p>
+                                <h4 class="text-white font-semibold">DSA in Python</h4>
+                            </div>
+                        </div>
+                    </div>
+
+
+  <!-- -------------------------------------------------------------------------------------------------- -->
+
+
+<!-- Right: Features Column -->
+                    <div class="space-y-6 reveal delay-200">
+                        <!-- Card 1 -->
+                        <div class="glass-panel p-6 rounded-2xl flex items-start gap-4 hover:border-primary/40 transition-all group">
+                            <div class="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+                                <i data-lucide="terminal-square" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold text-lg mb-1">Passionate Coder</h3>
+                                <p class="text-gray-400 text-sm">Python enthusiast currently expanding skills with C programming.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="glass-panel p-6 rounded-2xl flex items-start gap-4 hover:border-primary/40 transition-all group">
+                            <div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                                <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold text-lg mb-1">AI/ML Student</h3>
+                                <p class="text-gray-400 text-sm">First year B.Tech student at KIET specializing in AI-ML.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="glass-panel p-6 rounded-2xl flex items-start gap-4 hover:border-primary/40 transition-all group">
+                            <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-500 group-hover:scale-110 transition-transform">
+                                <i data-lucide="rocket" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold text-lg mb-1">Project Builder</h3>
+                                <p class="text-gray-400 text-sm">Created automation tools.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+             </div>
+        </section>
+
+
+
+  <!-- -------------------------------------------------------------------------------------------------- -->
+
+
+<!-- Skills Section (Updated UI) -->
+
+
+        <section id="skills" class="py-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <span class="text-secondary text-sm font-bold tracking-wider uppercase mb-2">Expertise</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold text-white">My Technical Proficiency</h2>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    
+                    <!-- Languages -->
+                    <div class="glass-panel p-8 rounded-2xl reveal hover:shadow-[0_0_20px_rgba(139,92,246,0.2)] transition-shadow">
+                        <h3 class="text-xl font-bold text-white mb-8 border-b border-white/10 pb-4">Languages</h3>
+                        <div class="space-y-6">
+                            <!-- Skill Item -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300 font-medium">Python</span>
+                                    <span class="text-secondary text-sm">70%</span>
+                                </div>
+                                <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-blue-500 to-secondary w-[70%] progress-bar rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Skill Item -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300 font-medium">C</span>
+                                    <span class="text-secondary text-sm">50%</span>
+                                </div>
+                                <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-blue-500 to-blue-400 w-[50%] progress-bar rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Skill Item -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300 font-medium">HTML/CSS</span>
+                                    <span class="text-secondary text-sm">60%</span>
+                                </div>
+                                <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-orange-500 to-pink-500 w-[60%] progress-bar rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Skill Item -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300 font-medium">JavaScript</span>
+                                    <span class="text-secondary text-sm">20%</span>
+                                </div>
+                                <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-yellow-500 to-orange-500 w-[20%] progress-bar rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+    
+
+
+
+
+
+
+                    <!-- AI/ML & Data -->
+                    <div class="glass-panel p-8 rounded-2xl reveal delay-100 hover:shadow-[0_0_20px_rgba(139,92,246,0.2)] transition-shadow">
+                        <h3 class="text-xl font-bold text-white mb-8 border-b border-white/10 pb-4">Libraries</h3>
+                        <div class="space-y-6">
+                            <!-- Skill Item -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300 font-medium">Pandas</span>
+                                    <span class="text-secondary text-sm">50%</span>
+                                </div>
+                                <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-emerald-500 to-green-400 w-[50%] progress-bar rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Skill Item -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300 font-medium">Numpy</span>
+                                    <span class="text-secondary text-sm">40%</span>
+                                </div>
+                                <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-purple-500 to-indigo-500 w-[40%] progress-bar rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Skill Item -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300 font-medium">Flask</span>
+                                    <span class="text-secondary text-sm">20%</span>
+                                </div>
+                                <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-pink-500 to-red-500 w-[20%] progress-bar rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Skill Item -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300 font-medium">Data Visualization</span>
+                                    <span class="text-secondary text-sm">60%</span>
+                                </div>
+                                <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-cyan-500 to-blue-500 w-[60%] progress-bar rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <!-- Tools -->
+                    <div class="glass-panel p-8 rounded-2xl reveal delay-200 hover:shadow-[0_0_20px_rgba(139,92,246,0.2)] transition-shadow">
+                        <h3 class="text-xl font-bold text-white mb-8 border-b border-white/10 pb-4">Tools & Technologies</h3>
+                        <div class="space-y-6">
+                            <!-- Skill Item -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300 font-medium">Git & GitHub</span>
+                                    <span class="text-secondary text-sm">30%</span>
+                                </div>
+                                <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-gray-500 to-gray-400 w-[30%] progress-bar rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Skill Item -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300 font-medium">Automation</span>
+                                    <span class="text-secondary text-sm">60%</span>
+                                </div>
+                                <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-violet-500 to-fuchsia-500 w-[60%] progress-bar rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Skill Item -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300 font-medium">Web Scraping</span>
+                                    <span class="text-secondary text-sm">42%</span>
+                                </div>
+                                <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-cyan-400 to-blue-400 w-[42%] progress-bar rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Skill Item -->
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300 font-medium">File Handling</span>
+                                    <span class="text-secondary text-sm">65%</span>
+                                </div>
+                                <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-orange-500 to-red-500 w-[65%] progress-bar rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+  <!-- -------------------------------------------------------------------------------------------------- -->
+
+
+
+
+<!-- Tags at bottom -->
+
+                <div class="flex flex-wrap justify-center gap-4 mt-12 reveal">
+                    <span class="px-6 py-2 rounded-full glass-panel text-sm text-gray-300 hover:bg-secondary/20 transition-colors cursor-default">Python</span>
+                    <span class="px-6 py-2 rounded-full glass-panel text-sm text-gray-300 hover:bg-secondary/20 transition-colors cursor-default">AI/ML</span>
+                    <span class="px-6 py-2 rounded-full glass-panel text-sm text-gray-300 hover:bg-secondary/20 transition-colors cursor-default">Automation</span>
+                    <span class="px-6 py-2 rounded-full glass-panel text-sm text-gray-300 hover:bg-secondary/20 transition-colors cursor-default">Web Dev</span>
+                    <span class="px-6 py-2 rounded-full glass-panel text-sm text-gray-300 hover:bg-secondary/20 transition-colors cursor-default">C Programming</span>
+                    <span class="px-6 py-2 rounded-full glass-panel text-sm text-gray-300 hover:bg-secondary/20 transition-colors cursor-default">Problem Solving</span>
+                </div>
+            </div>
+        </section>
+
+
+  <!-- -------------------------------------------------------------------------------------------------- -->
+
+
+
+
+        <!-- Services Section (New) -->
+        <section id="services" class="py-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <span class="text-secondary text-sm font-bold tracking-wider uppercase mb-2">Services</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold text-white">What I Can Do</h2>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="glass-panel p-8 rounded-2xl reveal hover:-translate-y-2 transition-transform duration-300 group">
+                        <div class="w-14 h-14 bg-primary/20 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="bot" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Intelligent Automation</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            Building custom bots to automate repetitive tasks, form filling, and workflow management using Python and Selenium.
+                        </p>
+                    </div>
+                    
+                    <!-- Service 2 -->
+                    <div class="glass-panel p-8 rounded-2xl reveal delay-100 hover:-translate-y-2 transition-transform duration-300 group">
+                        <div class="w-14 h-14 bg-secondary/20 rounded-xl flex items-center justify-center text-secondary mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="database" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Data Extraction</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            Scraping complex websites and APIs to gather data, clean it, and prepare it for analysis or database storage.
+                        </p>
+                    </div>
+
+
+
+                    
+
+                    <!-- Service 3 -->
+                    <div class="glass-panel p-8 rounded-2xl reveal delay-200 hover:-translate-y-2 transition-transform duration-300 group">
+                        <div class="w-14 h-14 bg-pink-500/20 rounded-xl flex items-center justify-center text-pink-500 mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="brain-circuit" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">AI & ML Solutions</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            Developing predictive models and data analysis scripts to uncover insights and patterns in your data.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+  <!-- -------------------------------------------------------------------------------------------------- -->
+
+
+        
+<!-- Projects Section -->
+
+        <section id="projects" class="py-24 bg-white/[0.02]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                    <div>
+                        <span class="text-secondary text-sm font-bold tracking-wider uppercase mb-2">Portfolio</span>
+                        <h2 class="text-3xl md:text-4xl font-display font-bold text-white">Featured Work</h2>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <a href="https://onlypython01.blogspot.com/p/python-projects-and-automation-tools.html" target="_blank" class="text-gray-400 hover:text-white flex items-center gap-2 transition-colors">
+                            View More Projects <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Card 1 -->
+                    <div class="group perspective reveal">
+                        <div class="tilt-card relative h-full glass-panel rounded-2xl p-8 transition-all duration-500 hover:bg-white/[0.05] hover:border-secondary/30">
+                            <div class="tilt-inner flex flex-col h-full">
+                                <div class="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center text-red-500 mb-6 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="youtube" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">YT Downloader</h3>
+                                <p class="text-gray-400 text-sm mb-6 flex-grow leading-relaxed">
+                                    A Python script that downloads high-quality YouTube videos using pytube and FFmpeg, allowing users to save videos in their preferred format and resolution.
+                                </p>
+
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-300 border border-white/5">Python</span>
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-300 border border-white/5">FFmpeg</span>
+                                </div>
+                                <a href="https://onlypython01.blogspot.com/2025/08/download-high-quality-youtube-videos.html" target="_blank" class="inline-flex items-center text-sm font-medium text-white group-hover:text-secondary transition-colors">
+                                     View Project <i data-lucide="code-2" class="w-4 h-4 ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <!-- Card 2 -->
+                    <div class="group perspective reveal">
+                        <div class="tilt-card relative h-full glass-panel rounded-2xl p-8 transition-all duration-500 hover:bg-white/[0.05] hover:border-secondary/30">
+                            <div class="tilt-inner flex flex-col h-full">
+                                <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary mb-6 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="bot" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">Text To Speech</h3>
+                                <p class="text-gray-400 text-sm mb-6 flex-grow leading-relaxed">
+                                    An offline Text-to-Speech tool built with pyttsx3 for Windows — selectable voices, adjustable rate/volume, export to WAV, and easy integration into GUIs or game engines for dynamic speech.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-300 border border-white/5">TTS</span>
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-300 border border-white/5">Python</span>
+                                </div>
+                                <a href="https://onlypython01.blogspot.com/2025/06/text-to-speech-tts-in-python-using.html" 
+                                 target="_blank" class="inline-flex items-center text-sm font-medium text-white group-hover:text-secondary transition-colors">
+                                    View Project <i data-lucide="code-2" class="w-4 h-4 ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="group perspective reveal">
+                        <div class="tilt-card relative h-full glass-panel rounded-2xl p-8 transition-all duration-500 hover:bg-white/[0.05] hover:border-secondary/30">
+                            <div class="tilt-inner flex flex-col h-full">
+                                <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="terminal" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">Extract Text from Image</h3>
+                                <p class="text-gray-400 text-sm mb-6 flex-grow leading-relaxed">
+                                    This project shows how to extract text from any image using Python and Tesseract OCR. In just a few steps, you can convert images into editable text!
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-300 border border-white/5">Automation</span>
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-300 border border-white/5">Text</span>
+                                </div>
+                                <a href="https://onlypython01.blogspot.com/2025/05/extract-text-from-image-using-python.html" 
+                                target="_blank"    class="inline-flex items-center text-sm font-medium text-white group-hover:text-secondary transition-colors">
+                                    View Project <i data-lucide="code-2" class="w-4 h-4 ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+<!-- -------------------------------------------------------------------------------------------------- -->
+
+
+
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 relative overflow-hidden">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+                <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">Ready to Innovate?</h2>
+                <p class="text-lg text-gray-400 mb-10 max-w-2xl mx-auto">
+                    Whether you have a project in mind or just want to chat about AI and Automation, feel free to reach out.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="mailto:atulkushwaha0112@gmail.com" class="px-8 py-4 bg-white text-dark font-bold rounded-xl hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 text-dark">
+                        <i data-lucide="mail" class="w-5 h-5"></i> Send Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/atul-kushwaha-9b0290381/" target="_blank" class="px-8 py-4 glass-panel text-white font-bold rounded-xl hover:bg-white/10 transition-colors flex items-center justify-center gap-2">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+
+<!-- -------------------------------------------------------------------------------------------------- -->
+
+
+
+        <!-- Footer -->
+        <footer class="py-8 border-t border-white/5">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2025 Atul Kushwaha. Built with <span class="text-primary">♥</span> and Tailwind CSS.
+                </p>
+            </div>
+        </footer>
+
+    </main>
+
+<!-- -------------------------------------------------------------------------------------------------- -->
+
+
+
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Reveal Animation on Scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 100;
+            
+            revealElements.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        // Trigger once on load
+        revealOnScroll();
+
+        // 3D Tilt Logic for Cards
+        const cards = document.querySelectorAll('.tilt-card');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Calculate percentage
+                const xPct = x / rect.width;
+                const yPct = y / rect.height;
+                
+                // Calculate rotation (max 10 degrees)
+                const xRot = (yPct - 0.5) * -10;
+                const yRot = (xPct - 0.5) * 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${xRot}deg) rotateY(${yRot}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+            });
+        });
+
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+
+<!-- -------------------------------------------------------------------------------------------------- -->
+
+
+</body>
+
+</html>
